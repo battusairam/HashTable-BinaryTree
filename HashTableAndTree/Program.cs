@@ -9,35 +9,45 @@ namespace HashTableAndTree
         {
             Console.WriteLine("Welcome to Hash Table and Tree Program...");
 
-            string sentence = "To be or not to be";
-            Dictionary<string, int> wordFrequency = GetWordFrequency(sentence);
+            string paragraph = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+            Dictionary<string, MyLinkedListNode<string, int>> hashTable = new Dictionary<string, MyLinkedListNode<string, int>>();
+
+            string[] words = paragraph.Split(' ');
+
+            foreach (string word in words)
+            {
+                string key = word.ToLower();
+
+                if (hashTable.ContainsKey(key))
+                {
+                    MyLinkedListNode<string, int> node = hashTable[key];
+                    node.Value++;
+                }
+                else
+                {
+                    MyLinkedListNode<string, int> newNode = new MyLinkedListNode<string, int>(key, 1);
+                    hashTable[key] = newNode;
+                }
+            }
 
             Console.WriteLine("Word Frequency:");
-            foreach (var data in wordFrequency)
+            foreach (var data in hashTable.Values)
             {
                 Console.WriteLine($"{data.Key}: {data.Value}");
             }
         }
+    }
 
-        static Dictionary<string, int> GetWordFrequency(string sentence)
+    public class MyLinkedListNode<K, V>
+    {
+        public K Key { get; set; }
+        public V Value { get; set; }
+        public MyLinkedListNode<K, V> Next { get; set; }
+
+        public MyLinkedListNode(K key, V value)
         {
-            Dictionary<string, int> wordFrequency = new Dictionary<string, int>();
-
-            string[] words = sentence.Split(' ');
-
-            foreach (string word in words)
-            {
-                if (wordFrequency.ContainsKey(word))
-                {
-                    wordFrequency[word]++;
-                }
-                else
-                {
-                    wordFrequency[word] = 1;
-                }
-            }
-
-            return wordFrequency;
+            Key = key;
+            Value = value;
         }
     }
 }
