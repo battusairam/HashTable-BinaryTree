@@ -14,15 +14,28 @@ namespace HashTableAndTree
             bst.Insert(56);
             bst.Insert(30);
             bst.Insert(70);
+            bst.Insert(22);
+            bst.Insert(40);
+            bst.Insert(60);
+            bst.Insert(95);
+            bst.Insert(11);
+            bst.Insert(3);
+            bst.Insert(16);
+            bst.Insert(65);
+            bst.Insert(63);
+            bst.Insert(67);
 
             Console.WriteLine("Inorder Traversal:");
             bst.InorderTraversal();
+
+            Console.WriteLine("Total number of nodes: " + bst.Size());
         }
     }
 
     public class BinarySearchTree
     {
         private Node root;
+        private int count;
 
         public void Insert(int value)
         {
@@ -33,6 +46,7 @@ namespace HashTableAndTree
         {
             if (currentNode == null)
             {
+                count++;
                 return new Node(value);
             }
 
@@ -63,6 +77,11 @@ namespace HashTableAndTree
             InorderTraversal(currentNode.Left);
             Console.WriteLine(currentNode.Value);
             InorderTraversal(currentNode.Right);
+        }
+
+        public int Size()
+        {
+            return count;
         }
 
         private class Node
