@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HashTableAndTree
 {
-    internal class Program
+    internal class HashTable
     {
         static void Main(string[] args)
         {
