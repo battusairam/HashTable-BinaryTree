@@ -18,6 +18,11 @@ namespace HashTableAndTree
             {
                 string key = word.ToLower();
 
+                if (key == "avoidable")
+                {
+                    continue; // Skip the word "avoidable"
+                }
+
                 if (hashTable.ContainsKey(key))
                 {
                     MyLinkedListNode<string, int> node = hashTable[key];
